@@ -142,7 +142,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     } else {
       socket.emit('stream', $scope.user);
     }
-  }, 2000);
+  }, 100);
 });
 
 angular.bootstrap(document, ['RouletteApp']);

@@ -41,7 +41,7 @@ var config = {
   renderFormats:['html'],
   persistence:buildPersistence('mock'),
   options:{
-    verbose:true
+    verbose:false
   }
 };
 
