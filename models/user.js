@@ -15,11 +15,9 @@ var User = function (id, nickname) {
     if (id !== null) {
       var newTarget = User.find(id);
       newTarget.target = null;
+      this.target = newTarget.id;
+      newTarget.target = this.id;
     }
-    this.target = newTarget.id;
-    newTarget.target = this.id;
-    console.log('this :', this);
-    console.log('newTarget :', newTarget);
   };
   this.setFirstFreeTarget = function () {
     var rand = Math.round(Math.random() * users.length);

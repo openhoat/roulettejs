@@ -86,7 +86,11 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   };
 
   $scope.join = function (id) {
-    socket.emit('join', id);
+    if (id === $scope.user.target) {
+      socket.emit('leave');
+    } else {
+      socket.emit('join', id);
+    }
   };
 
   $('#selfCam').after(canvas);
@@ -108,6 +112,9 @@ app.controller('RouletteCtrl', function ($scope, socket) {
       for (var i = 0; i < users.length; i++) {
         if (users[i].id === $scope.userId) {
           $scope.user = users[i];
+          if (users[i].target == null){
+            targetCam.src = '/img/static.gif';
+          }
         } else {
           $scope.users.push(users[i]);
         }
