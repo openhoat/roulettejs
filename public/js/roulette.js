@@ -142,14 +142,12 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   }
 
   var timer = setInterval(function () {
-    if (selfCam.src !== '') {
+    if (selfCam.src !== '' && $scope.user.target !== null) {
       ctx.drawImage(selfCam, 0, 0, 320, 240);
       var data = canvasElt.toDataURL('image/jpeg', 1.0);
       socket.emit('stream', data);
-    } else {
-      socket.emit('stream', $scope.user);
     }
-  }, 100);
+  }, 200);
 });
 
 angular.bootstrap(document, ['RouletteApp']);
