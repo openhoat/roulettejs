@@ -54,11 +54,16 @@ app.factory('socket', function ($rootScope) {
 });
 
 app.controller('RouletteCtrl', function ($scope, socket) {
-  var targetCam = $('#targetCam').get(0)
-    , selfCam = $('#selfCam').get(0)
-    , canvas = $('<canvas width="320" height="240" />')
+  var targetCam = $('#targetCam')
+    , targetCamElt = targetCam.get(0)
+    , selfCam = $('#selfCam')
+    , selfCamElt = selfCam.get(0)
+    , canvas = $('<canvas />')
     , canvasElt = canvas.get(0)
     , ctx = canvasElt.getContext('2d');
+
+  canvasElt.width = selfCam.width();
+  canvasElt.height =  selfCam.height();
 
   $scope.user = {};
   $scope.users = [];
@@ -93,7 +98,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     }
   };
 
-  $('#selfCam').after(canvas);
+  selfCam.after(canvas);
   canvas.hide();
 
   $('#nextButton').click(function (e) {
@@ -113,7 +118,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
         if (users[i].id === $scope.userId) {
           $scope.user = users[i];
           if (users[i].target == null){
-            targetCam.src = '/img/static.gif';
+            targetCamElt.src = '/img/static.gif';
           }
         } else {
           $scope.users.push(users[i]);
@@ -122,10 +127,10 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     });
     socket.on('stream', function (data) {
       var url = data;
-      targetCam.onload = function () {
+      targetCamElt.onload = function () {
         window.webkitURL.revokeObjectURL(url);
       };
-      targetCam.src = url;
+      targetCamElt.src = url;
     });
   });
 
@@ -133,7 +138,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     showMessage('Browser not compatible !');
   } else {
     navigator.webkitGetUserMedia({video:true}, function (stream) {
-      selfCam.src = window.webkitURL.createObjectURL(stream);
+      selfCamElt.src = window.webkitURL.createObjectURL(stream);
     }, function (err) {
       $scope.$apply(function(){
         showMessage('Error with cam !');
@@ -142,8 +147,8 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   }
 
   var timer = setInterval(function () {
-    if (selfCam.src !== '' && $scope.user.target !== null) {
-      ctx.drawImage(selfCam, 0, 0, 320, 240);
+    if (selfCamElt.src !== '' && $scope.user.target !== null) {
+      ctx.drawImage(selfCamElt, 0, 0, selfCam.width(), selfCam.height());
       var data = canvasElt.toDataURL('image/jpeg', 1.0);
       socket.emit('stream', data);
     }
