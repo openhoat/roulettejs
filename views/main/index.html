@@ -12,15 +12,16 @@
     <ul id="messageList">
       <li ng-repeat="message in messages">{{message}}</li>
     </ul>
-    <button id="nextButton" class="btn-large" title="Connect to a random cam">Next</button>
+    <button id="nextButton" class="btn" title="Connect to a random cam">Next</button>
     <form id="userForm" class="form-inline" ng-submit="changeNickname()">
-      <input type="text" class="input-medium" ng-model="user.nickname" title="{{user.address}}"/>
-      <input type="submit" class="btn" value="Change"/>
+      <label for="nickname">Nick name :</label>
+      <input type="text" id="nickname" name="nickname" class="input-medium" ng-model="user.nickname" title="{{user.address}}"/>
+      <input type="submit" class="btn-mini" value="ok"/>
     </form>
     <ul id="usersList">
       <legend>Connected users :</legend>
       <li id="{{other.id}}" class="others" ng-repeat="other in users" ng-click="join(other.id)"
-          ng-class="{target: other.id == user.target}" title="{{other.address}}">
+          ng-class="{target: other.id == user.target}" title="Join/leave {{other.nickname}}">
         {{other.nickname}}
       </li>
     </ul>
