@@ -44,7 +44,15 @@ User.join = function (id, nickname) {
 };
 
 User.list = function () {
-  return users;
+  var list = [];
+  for(var i = 0; i < users.length; i++) {
+    list.push({
+      id:users[i].id,
+      nickname:users[i].nickname,
+      target:users[i].target
+    });
+  }
+  return list;
 };
 
 User.remove = function (id) {
