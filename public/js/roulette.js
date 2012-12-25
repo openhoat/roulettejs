@@ -68,6 +68,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $scope.user = {};
   $scope.users = [];
   $scope.messages = [];
+  $scope.targetCamStatus = 'waiting';
 
   function showMessage(message) {
     $scope.messages.push(message);
@@ -93,8 +94,10 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $scope.join = function (id) {
     if (id === $scope.user.target) {
       socket.emit('leave');
+      $scope.targetCamStatus = 'waiting';
     } else {
       socket.emit('join', id);
+      $scope.targetCamStatus = 'connecting';
     }
   };
 
