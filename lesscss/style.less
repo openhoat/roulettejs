@@ -1,0 +1,69 @@
+html {
+  background-color: #a2a2a2;
+}
+body {
+  max-width: 860px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+#mainContainer {
+}
+#contentContainer {
+  padding: 10px;
+}
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  h2 {
+    text-align: center;
+    font-size: 1.7em;
+  }
+}
+footer {
+  clear: both;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  font-size: 0.8em;
+  p {
+    &.poweredby {
+      float: right;
+    }
+  }
+}
+#targetCam {
+  display: block;
+}
+#usersContainer {
+  text-align: right;
+  legend {
+    font-size: 1.2em;
+  }
+}
+#usersList {
+  list-style: none;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 20px;
+  & > li {
+    cursor: pointer;
+    margin-top: 4px;
+    color: #555;
+    &:hover {
+      color: #06f;
+    }
+  }
+  .others.target {
+    color: #06f;
+  }
+}
+#nextButton {
+  margin: 20px 0;
+}
+#messageList {
+  list-style: none;
+  font-weight: bold;
+  color: #f85;
+}

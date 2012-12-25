@@ -1,0 +1,29 @@
+<% include ../include/header.html %>
+<div id="contentContainer" class="span12">
+  <div id="videoContainer" class="span6">
+    <div class="row-fluid">
+      <img id="targetCam" width="320" height="240" src="/img/static.gif"/>
+    </div>
+    <div class="row-fluid">
+      <video id="selfCam" width="320" height="240" autoplay></video>
+    </div>
+  </div>
+  <div id="usersContainer" class="span5">
+    <ul id="messageList">
+      <li ng-repeat="message in messages">{{message}}</li>
+    </ul>
+    <button id="nextButton" class="btn-large" title="Connect to a random cam">Next</button>
+    <form id="userForm" class="form-inline" ng-submit="changeNickname()">
+      <input type="text" class="input-medium" ng-model="user.nickname" title="{{user.address}}"/>
+      <input type="submit" class="btn" value="Change"/>
+    </form>
+    <ul id="usersList">
+      <legend>Connected users :</legend>
+      <li id="{{other.id}}" class="others" ng-repeat="other in users" ng-click="join(other.id)"
+          ng-class="{target: other.id == user.target}" title="{{other.address}}">
+        {{other.nickname}}
+      </li>
+    </ul>
+  </div>
+</div>
+<% include ../include/footer.html %>

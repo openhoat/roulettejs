@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: roulettejs
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Chat roulette demo powered by wbp.js
+        exec: 
+    url: roulettejs.eu01.aws.af.cm
+    mem: 128M
+    instances: 1
