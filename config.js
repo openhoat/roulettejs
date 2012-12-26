@@ -15,7 +15,7 @@ var config = {
   locales:['en', 'fr'],
   persistence:{ type:'mock' },
   options:{
-    verbose:true
+    verbose:false
   }
 };
 
