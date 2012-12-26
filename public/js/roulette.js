@@ -68,7 +68,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $scope.user = {};
   $scope.users = [];
   $scope.messages = [];
-  $scope.targetCamStatus = 'waiting';
+  $scope.targetCamStatus = i18n('waiting');
 
   function showMessage(message) {
     $scope.messages.push(message);
@@ -88,16 +88,16 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $scope.changeNickname = function () {
     socket.emit('nickname', $scope.user.nickname);
     createCookie('nickname', $scope.user.nickname, 10000);
-    showMessage('You are now known as ' + $scope.user.nickname + '.');
+    showMessage(i18n('You are now known as') + ' ' + $scope.user.nickname);
   };
 
   $scope.join = function (id) {
     if (id === $scope.user.target) {
       socket.emit('leave');
-      $scope.targetCamStatus = 'waiting';
+      $scope.targetCamStatus = i18n('waiting');
     } else {
       socket.emit('join', id);
-      $scope.targetCamStatus = 'connecting';
+      $scope.targetCamStatus = i18n('connecting');
     }
   };
 
@@ -107,7 +107,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $('#nextButton').click(function (e) {
     e.preventDefault();
     socket.emit('next');
-    $scope.targetCamStatus = 'searching';
+    $scope.targetCamStatus = i18n('searching');
   });
 
   socket.on('connect', function () {
@@ -123,9 +123,9 @@ app.controller('RouletteCtrl', function ($scope, socket) {
           $scope.user = users[i];
           if (users[i].target == null){
             targetCamElt.src = '/img/static.gif';
-            $scope.targetCamStatus = 'waiting';
+            $scope.targetCamStatus = i18n('waiting');
           } else {
-            $scope.targetCamStatus = 'connected';
+            $scope.targetCamStatus = i18n('connected');
           }
         } else {
           $scope.users.push(users[i]);
@@ -142,13 +142,13 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   });
 
   if(navigator.webkitGetUserMedia === undefined) {
-    showMessage('Browser not compatible !');
+    showMessage(i18n('Browser not compatible !'));
   } else {
     navigator.webkitGetUserMedia({video:true}, function (stream) {
       selfCamElt.src = window.webkitURL.createObjectURL(stream);
     }, function (err) {
       $scope.$apply(function(){
-        showMessage('Error with cam !');
+        showMessage(i18n('Error with cam !'));
       });
     });
   }
