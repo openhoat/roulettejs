@@ -107,6 +107,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   $('#nextButton').click(function (e) {
     e.preventDefault();
     socket.emit('next');
+    $scope.targetCamStatus = 'searching';
   });
 
   socket.on('connect', function () {
@@ -122,6 +123,9 @@ app.controller('RouletteCtrl', function ($scope, socket) {
           $scope.user = users[i];
           if (users[i].target == null){
             targetCamElt.src = '/img/static.gif';
+            $scope.targetCamStatus = 'waiting';
+          } else {
+            $scope.targetCamStatus = 'connected';
           }
         } else {
           $scope.users.push(users[i]);
