@@ -3,7 +3,7 @@ var path = require('path')
 
 // Feel free to match your settings
 var config = {
-  port:3000,
+  port:3005,
   baseDir:baseDir,
   controllersDir:path.join(baseDir, 'controllers'),
   viewsDir:path.join(baseDir, 'views'),
