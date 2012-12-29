@@ -23,6 +23,4 @@ The recommended way is through the excellent [NPM](http://www.npmjs.org/):
 
     $ nodejs app
 
-## [See it in action](http://roulettejs.eu01.aws.af.cm/)
-
-- powered by [AppFog](http://www.appfog.com/) cloud
+## [See it in action](http://roulettejs.valtech-training.fr:3000/)
