@@ -1,21 +1,20 @@
-var path = require('path')
-  , baseDir = __dirname;
 
 // Feel free to match your settings
 var config = {
-  port:3005,
-  baseDir:baseDir,
-  controllersDir:path.join(baseDir, 'controllers'),
-  viewsDir:path.join(baseDir, 'views'),
-  lesscssDir:path.join(baseDir, 'lesscss'),
-  publicDir:path.join(baseDir, 'public'),
-  cssDir:path.join(baseDir, 'public', 'css'),
-  mobileViewSufix:null,
-  renderFormats:['html'],
-  locales:['en', 'fr'],
-  persistence:{ type:'mock' },
-  options:{
-    verbose:false
+  verbose:false,
+  plugins:{
+    'wbpjs-mvc':{
+      type:'wbpjs-mvc',
+      config:{
+//        env:'devlopment',
+        port:3005,
+        renderFormats:['html'],
+        locales:['en', 'fr']
+      }
+    },
+    'web-sockets':{
+      type:'web-sockets'
+    }
   }
 };
 

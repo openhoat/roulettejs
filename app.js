@@ -1,10 +1,6 @@
-var config = require('./config.js')
-  , wbp = require('wbpjs');
+var wbp = require('wbpjs')
+  , config = require(wbp.findAppFile('config.js'));
 
-wbp.configure(config);
-wbp.create();
-
-var ws = require(config.baseDir + '/lib/ws.js');
-ws.listen();
-
-wbp.start();
+wbp.start(config, function(){
+  require(wbp.findAppFile('lib', 'ws.js'));
+});

@@ -1,11 +1,16 @@
 var wbp = require('wbpjs')
-  , config = wbp.config;
+  , mvcPlugin = wbp.findPlugin('wbpjs-mvc')
+  , viewsPlugin = mvcPlugin.viewsPlugin;
 
-module.exports = {
+var viewPrefix = 'main/';
+
+var controller = {
   index:function (req, res) {
-    wbp.render(res, function (type) {
-      var view = wbp.getWebView(req, 'main/index', type);
+    viewsPlugin.render(res, function (type) {
+      var view = viewsPlugin.getWebView(req, viewPrefix + 'index', type);
       res.render(view);
     });
   }
 };
+
+module.exports = controller;

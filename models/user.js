@@ -1,5 +1,3 @@
-var wbp = require('wbpjs');
-
 var users = [];
 
 var User = function (id, nickname) {
