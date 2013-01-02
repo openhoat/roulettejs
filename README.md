@@ -23,4 +23,4 @@ The recommended way is through the excellent [NPM](http://www.npmjs.org/):
 
     $ nodejs app
 
-## [See it in action](http://roulettejs.valtech-training.fr:3000/)
+## [See it in action](http://roulettejs.labs.valtech-training.fr/)
