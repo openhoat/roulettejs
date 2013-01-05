@@ -1,6 +1,6 @@
 {
   "name":"roulettejs",
-  "version":"0.0.6",
+  "version":"0.0.7",
   "description":"Chat roulette demo powered by wbp.js",
   "homepage": "https://github.com/openhoat/roulettejs",
   "main":"app.js",
@@ -22,7 +22,7 @@
     }
   ],
   "dependencies":{
-    "wbpjs":"~2.0.5"
+    "wbpjs":"~2.1.1"
   },
   "devDependencies":{
     "grunt-contrib-clean":"0.3.1",
