@@ -159,7 +159,7 @@ app.controller('RouletteCtrl', function ($scope, socket) {
       var data = canvasElt.toDataURL('image/jpeg', 1.0);
       socket.emit('stream', data);
     }
-  }, 1000);
+  }, 500);
 });
 
 angular.bootstrap(document, ['RouletteApp']);

@@ -2,8 +2,8 @@
 // Feel free to match your settings
 var config = {
   plugins:{
-    'wbpjs-mvc':{
-      type:'wbpjs-mvc',
+    'mvc':{
+      type:'mvc',
       config:{
         port:3005,
         renderFormats:['html'],
