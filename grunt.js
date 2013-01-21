@@ -9,10 +9,10 @@ function convertToAbsolutePaths(paths) {
 }
 
 var dir = {
-    reports    :'reports',
+    reports:'reports',
     controllers:'controllers',
-    models     :'models',
-    spec       :'spec'
+    models:'models',
+    spec:'spec'
   }
   , jsLintFiles = ['app.js', 'config.js', 'lib/**/*.js', dir.controllers + '/**/*.js', dir.models + '/**/*.js'];
 
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jasmine-node');
   grunt.registerTask('verify', 'jslint');
   if ((fs.existsSync ? fs : path).existsSync(dir.spec)) {
-      grunt.registerTask('test', 'jasmine_node');
+    grunt.registerTask('test', 'jasmine_node');
   } else {
     grunt.registerTask('test', function () {
       grunt.log.writeln('no test found');
@@ -31,38 +31,40 @@ module.exports = function (grunt) {
   }
   grunt.registerTask('default', 'verify test');
   var gruntConfig = {
-    pkg         :'<json:package.json>',
-    clean       :{
+    pkg:'<json:package.json>',
+    clean:{
       default:[dir.reports]
     },
-    jslint      :{
-      files     :jsLintFiles,
+    jslint:{
+      files:jsLintFiles,
       directives:{
         require:false,
-        node   :true,
-        sloppy :true,
-        white  :true,
-        nomen  :true,
-        stupid :true,
-        regexp: true,
-        unparam: true
+        node:true,
+        sloppy:true,
+        white:true,
+        nomen:true,
+        stupid:true,
+        regexp:true,
+        unparam:true,
+        plusplus:true,
+        vars:true
       },
-      options   :{
-        errorsOnly :true,
-        jslintXml  :dir.reports + '/jslint.xml',
+      options:{
+        errorsOnly:true,
+        jslintXml:dir.reports + '/jslint.xml',
         failOnError:false
       }
     },
     jasmine_node:{
       specNameMatcher:'.*Spec',
-      projectRoot    :dir.spec,
-      requirejs      :false,
-      forceExit      :true,
-      jUnit          :{
-        report        :true,
-        savePath      :dir.reports + '/',
+      projectRoot:dir.spec,
+      requirejs:false,
+      forceExit:true,
+      jUnit:{
+        report:true,
+        savePath:dir.reports + '/',
         useDotNotation:true,
-        consolidate   :true
+        consolidate:true
       }
     }
   };
