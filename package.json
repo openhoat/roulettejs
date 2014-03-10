@@ -24,10 +24,10 @@
   "dependencies": {
     "hw-express": "0.1.0",
     "express": "3.5.0",
-    "i18n": "~0.4.1",
-    "ejs": "~0.8.5",
-    "less-middleware": "~0.2.1-beta",
-    "socket.io": "~0.9.16"
+    "i18n": "0.4.1",
+    "ejs": "0.8.5",
+    "less-middleware": "0.1.14",
+    "socket.io": "0.9.16"
   },
   "devDependencies": {
     "grunt": "0.4.1",
