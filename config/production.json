@@ -1,0 +1,7 @@
+{
+  "less": {
+    "once": true,
+    "compress": true,
+    "optimization": 2
+  }
+}

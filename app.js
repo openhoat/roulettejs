@@ -1,7 +1,9 @@
-var pkg = require('./package')
-  , wbp = require('wbpjs').getInstance(pkg.name)
-  , config = wbp.requireAppFile('config');
+var HwExpress = require('hw-express')
+  , WsServer = require('./lib/ws-server')
+  , hwe, wsServer;
 
-wbp.start(config, function(){
-  wbp.requireAppFile('lib', 'ws');
-});
+hwe = new HwExpress();
+hwe.start();
+wsServer = new WsServer(hwe);
+wsServer.start();
+

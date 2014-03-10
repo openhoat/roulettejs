@@ -1,3 +1,5 @@
+assets/components/**
+assets/styles/style.css
+dist
 node_modules
 .idea
-dist

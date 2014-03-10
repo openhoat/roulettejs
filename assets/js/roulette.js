@@ -1,38 +1,10 @@
-function createCookie(name, value, days) {
-  var expires = '';
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toGMTString();
-  }
-  document.cookie = name + '=' + value + expires + '; path=/';
-}
-
-function readCookie(name) {
-  var prefix = name + "=";
-  var cookies = document.cookie.split(';');
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i];
-    while (cookie.charAt(0) === ' ') {
-      cookie = cookie.substring(1, cookie.length);
-    }
-    if (cookie.indexOf(prefix) == 0) {
-      return cookie.substring(prefix.length, cookie.length);
-    }
-  }
-  return null;
-}
-
-function deleteCookie(name) {
-  createCookie(name, '', -1);
-}
-
 var app = angular.module('RouletteApp', []);
 
 app.factory('socket', function ($rootScope) {
   var socket = io.connect(window.location.origin);
+  console.log('socket :', socket);
   return {
-    on:function (eventName, callback) {
+    on: function (eventName, callback) {
       socket.on(eventName, function () {
         var args = arguments;
         $rootScope.$apply(function () {
@@ -40,7 +12,7 @@ app.factory('socket', function ($rootScope) {
         });
       });
     },
-    emit:function (eventName, data, callback) {
+    emit: function (eventName, data, callback) {
       socket.emit(eventName, data, function () {
         var args = arguments;
         $rootScope.$apply(function () {
@@ -60,10 +32,11 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     , selfCamElt = selfCam.get(0)
     , canvas = $('<canvas />')
     , canvasElt = canvas.get(0)
-    , ctx = canvasElt.getContext('2d');
+    , ctx = canvasElt.getContext('2d')
+    , timer;
 
   canvasElt.width = selfCam.width();
-  canvasElt.height =  selfCam.height();
+  canvasElt.height = selfCam.height();
 
   $scope.user = {};
   $scope.users = [];
@@ -72,10 +45,10 @@ app.controller('RouletteCtrl', function ($scope, socket) {
 
   function showMessage(message) {
     $scope.messages.push(message);
-    setTimeout(function(){
-      for(var i = 0; i < $scope.messages.length; i++){
-        if($scope.messages[i] === message){
-          $scope.$apply(function(){
+    setTimeout(function () {
+      for (var i = 0; i < $scope.messages.length; i++) {
+        if ($scope.messages[i] === message) {
+          $scope.$apply(function () {
             $scope.messages.splice(i, 1);
           });
           return true;
@@ -121,8 +94,8 @@ app.controller('RouletteCtrl', function ($scope, socket) {
       for (var i = 0; i < users.length; i++) {
         if (users[i].id === $scope.userId) {
           $scope.user = users[i];
-          if (users[i].target == null){
-            targetCamElt.src = '/img/static.gif';
+          if (users[i].target == null) {
+            targetCamElt.src = '/assets/img/static.gif';
             $scope.targetCamStatus = i18n('waiting');
           } else {
             $scope.targetCamStatus = i18n('connected');
@@ -141,19 +114,19 @@ app.controller('RouletteCtrl', function ($scope, socket) {
     });
   });
 
-  if(navigator.webkitGetUserMedia === undefined) {
+  if (navigator.webkitGetUserMedia === undefined) {
     showMessage(i18n('Browser not compatible !'));
   } else {
-    navigator.webkitGetUserMedia({video:true}, function (stream) {
+    navigator.webkitGetUserMedia({video: true}, function (stream) {
       selfCamElt.src = window.webkitURL.createObjectURL(stream);
     }, function (err) {
-      $scope.$apply(function(){
+      $scope.$apply(function () {
         showMessage(i18n('Error with cam !'));
       });
     });
   }
 
-  var timer = setInterval(function () {
+  timer = setInterval(function () {
     if (selfCamElt.src !== '' && $scope.user.target !== null) {
       ctx.drawImage(selfCamElt, 0, 0, selfCam.width(), selfCam.height());
       var data = canvasElt.toDataURL('image/jpeg', 1.0);
@@ -162,4 +135,31 @@ app.controller('RouletteCtrl', function ($scope, socket) {
   }, 500);
 });
 
-angular.bootstrap(document, ['RouletteApp']);
+function createCookie(name, value, days) {
+  var expires = '';
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = '; expires=' + date.toGMTString();
+  }
+  document.cookie = name + '=' + value + expires + '; path=/';
+}
+
+function readCookie(name) {
+  var prefix = name + "=";
+  var cookies = document.cookie.split(';');
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1, cookie.length);
+    }
+    if (cookie.indexOf(prefix) == 0) {
+      return cookie.substring(prefix.length, cookie.length);
+    }
+  }
+  return null;
+}
+
+function deleteCookie(name) {
+  createCookie(name, '', -1);
+}
