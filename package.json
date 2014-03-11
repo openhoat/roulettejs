@@ -22,9 +22,9 @@
     }
   ],
   "dependencies": {
-    "hw-util": "~0.1.8",
-    "hw-logger": "~0.0.6",
-    "hw-express": "~0.1.8",
+    "hw-util": "~0.1.10",
+    "hw-logger": "0.0.7",
+    "hw-express": "~0.1.10",
     "express": "~3.5.0",
     "i18n": "~0.4.1",
     "ejs": "~0.8.5",
