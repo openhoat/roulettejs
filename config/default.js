@@ -2,10 +2,10 @@ module.exports = {
   env: 'development',
   listenPort: process.env['NODE_SOCKET_PATH'] || 3000,
   log: {
+    level: 'ws',
     format: {
       heading: 'roulettejs'
     },
-    level: 'ws',
     levels: {
       ws: {
         value: 36,

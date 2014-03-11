@@ -1,6 +1,6 @@
 {
   "name": "roulettejs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Chat roulette demo",
   "homepage": "https://github.com/openhoat/roulettejs",
   "main": "app.js",
@@ -22,19 +22,19 @@
     }
   ],
   "dependencies": {
-    "hw-util": "0.1.2",
-    "hw-logger": "0.0.1",
-    "hw-express": "0.1.3",
-    "express": "3.5.0",
-    "i18n": "0.4.1",
-    "ejs": "0.8.5",
-    "less-middleware": "0.1.14",
-    "socket.io": "0.9.16"
+    "hw-util": "~0.1.8",
+    "hw-logger": "0.0.6",
+    "hw-express": "~0.1.8",
+    "express": "~3.5.0",
+    "i18n": "~0.4.1",
+    "ejs": "~0.8.5",
+    "less-middleware": "~0.1.15",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
-    "grunt": "0.4.1",
+    "grunt": "~0.4.3",
     "grunt-contrib-clean": "0.5.0",
     "grunt-mkdir": "0.1.1",
-    "grunt-contrib-jshint": "0.7.2"
+    "grunt-contrib-jshint": "~0.7.2"
   }
 }
