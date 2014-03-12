@@ -6,6 +6,6 @@ module.exports = {
   },
   log: {
     level: 'error',
-    stream: process.stdout
+    colorEnabled: false
   }
 };
