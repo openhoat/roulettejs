@@ -25,7 +25,7 @@
     "hw-util": "~0.2.0",
     "hw-logger": "~0.1.1",
     "hw-express": "~0.2.1",
-    "express": "~3.5.0",
+    "express": "~4.0.0",
     "i18n": "~0.4.1",
     "ejs": "~0.8.5",
     "less-middleware": "~0.1.15",
